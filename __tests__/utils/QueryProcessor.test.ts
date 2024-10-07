@@ -17,4 +17,31 @@ describe("QueryProcessor", () => {
             "writer in the English language and the world's pre-eminent dramatist."
           ));
     });
+
+    test('should return shakespeare description 1', () => {
+        const query = "Who is Shakespeare?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
+            "English poet, playwright, and actor, widely regarded as the greatest " +
+            "writer in the English language and the world's pre-eminent dramatist."
+          ));
+    });
+
+    test('shakespeare capitalization', () => {
+        const query = "SHAKESPEARE?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
+            "English poet, playwright, and actor, widely regarded as the greatest " +
+            "writer in the English language and the world's pre-eminent dramatist."
+          ));
+    });
+
+    test('shakespeare should not return', () => {
+        const query = "SHAKESPAEARE?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((""));
+    });
+
 });
